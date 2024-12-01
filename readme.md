@@ -185,10 +185,6 @@ Aggiunge un livello di sicurezza alla governance
 
 
 ## Note sulla Sicurezza
-
-I contratti seguono le best practices di sicurezza Solidity
-
-
 Sono stati implementati eventi per tracciare tutte le azioni importanti
 
 
