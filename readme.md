@@ -64,67 +64,135 @@ Supporto per il voto, l'astensione e il voto contrario
 ### Gestione Token
 
 Acquisto shares in cambio di token
+
+
 Trasferimenti sicuri con controlli di saldo
+
+
 Sistema di approvazioni per spese delegate
+
+
 
 ### Sistema di Governance
 
 Creazione di proposte da parte dei membri
+
+
 Votazione pesata in base alle shares possedute
+
+
 Timelock per sicurezza aggiuntiva
+
+
 Sistema di quorum per decisioni significative
+
+
 
 ### Sicurezza e Controlli Implementati
 
 Verifiche dei saldi prima dei trasferimenti
-Protezione contro overflow aritmetici (Solidity ^0.8.0)
+
+
 Controlli sugli indirizzi zero
+
+
 Timelock per prevenire attacchi flash loan
+
+
 Sistema di permessi basato su ruoli
+
+
 
 ### Diritti di Amministrazione
 
 Amministrazione iniziale al deployer
+
+
 Trasferimento dell'amministrazione alla DAO
+
+
 Controlli di accesso per funzioni critiche
+
+
 
 ### Versioni e Compatibilità
 
 Solidity: v0.8.20
+
+
 EVM Version: paris
+
+
 Ottimizzazione: Abilitata (200 runs)
+
+
 
 ## Deployment
 I contratti sono stati deployati sulla testnet Sepolia:
 
+
 DAOMetraToken: https://sepolia.etherscan.io/address/0x7bE6F4a5f8aEa8082Ad548c19E51d3F03834d0d1#code
+
+
 DAOMetra: https://sepolia.etherscan.io/address/0x9247C769a73BCe6878a529d92FCf847d5933a775#code
+
+
 
 ## Testing
 Il progetto include una suite completa di test che copre:
 
+
 Inizializzazione dei contratti
+
+
 Acquisto di shares
+
+
 Creazione e gestione delle proposte
+
+
 Sistema di voto
+
+
 Funzionalità di timelock
+
+
 
 ## Sistema di Shares
 
 Le shares rappresentano il potere di voto nella DAO
+
+
 Prezzo fisso per garantire equità nell'acquisto
+
+
 Non trasferibili per mantenere stabilità nella governance
+
+
 
 ## Timelock
 L'implementazione del timelock di 24 ore:
 
+
 Protegge da attacchi veloci
+
+
 Permette ai membri di reagire a proposte sospette
+
+
 Aggiunge un livello di sicurezza alla governance
+
+
 
 ## Note sulla Sicurezza
 
 I contratti seguono le best practices di sicurezza Solidity
+
+
 Sono stati implementati eventi per tracciare tutte le azioni importanti
+
+
 Il sistema di voting è protetto da manipolazioni
+
+
 Il timelock protegge da attacchi flash loan
