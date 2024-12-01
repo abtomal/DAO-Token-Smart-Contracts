@@ -17,22 +17,48 @@ DAOMetra.sol: Il contratto principale della DAO che gestisce la governance.
 
 ### DAOMetraToken
 
-Implementa lo standard ERC20 per la massima compatibilità \\
+Implementa lo standard ERC20 per la massima compatibilità
+
+
 Nome Token: "Demtoken"
+
+
 Simbolo: "DMTK"
+
+
 Decimali: 18 (standard ERC20)
+
+
 Sistema di amministrazione con controllo della DAO
+
+
 Protezioni contro indirizzi zero e overflow/underflow
+
+
 Eventi per tracciare trasferimenti e cambi di amministrazione
+
+
 
 ### DAOMetra
 
 Sistema di shares per il voto
+
+
 Prezzo fisso di 110 token per share
+
+
 Periodo di votazione di 1 settimana
+
+
 Sistema di timelock di 24 ore per l'esecuzione delle proposte
+
+
 Quorum del 51% per l'approvazione delle proposte
+
+
 Supporto per il voto, l'astensione e il voto contrario
+
+
 
 ## Funzionalità Principali
 ### Gestione Token
