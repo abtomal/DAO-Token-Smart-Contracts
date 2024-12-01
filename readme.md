@@ -17,7 +17,7 @@ DAOMetra.sol: Il contratto principale della DAO che gestisce la governance.
 
 ### DAOMetraToken
 
-Implementa lo standard ERC20 per la massima compatibilità
+Implementa lo standard ERC20 per la massima compatibilità \\
 Nome Token: "Demtoken"
 Simbolo: "DMTK"
 Decimali: 18 (standard ERC20)
