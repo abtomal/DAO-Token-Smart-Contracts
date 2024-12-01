@@ -4,8 +4,14 @@
 ### DAOMetra è un'implementazione di una DAO (Decentralized Autonomous Organization) sulla blockchain Ethereum. 
 
 Il progetto consiste in due smart contract principali:
-DAOMetraToken.sol: Un token ERC20 che rappresenta i token della DAO
-DAOMetra.sol: Il contratto principale della DAO che gestisce la governance
+
+
+DAOMetraToken.sol: Un token ERC20 che rappresenta i token della DAO.
+
+
+DAOMetra.sol: Il contratto principale della DAO che gestisce la governance. 
+
+
 
 ## Caratteristiche Tecniche
 
