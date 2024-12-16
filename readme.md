@@ -76,8 +76,8 @@ Il progetto consiste in due smart contract principali:
 
 I contratti sono stati deployati sulla testnet Sepolia:
 
-- **DAOMetraToken**: [0x7bE6F4a5f8aEa8082Ad548c19E51d3F03834d0d1](https://sepolia.etherscan.io/address/0x7bE6F4a5f8aEa8082Ad548c19E51d3F03834d0d1#code).
-- **DAOMetra**: [0x9247C769a73BCe6878a529d92FCf847d5933a775](https://sepolia.etherscan.io/address/0x9247C769a73BCe6878a529d92FCf847d5933a775#code).
+- **DAOMetraToken**: [0x8017b00a1217EcbA1998f62f948379FDe187D0A2](https://sepolia.etherscan.io/address/0x8017b00a1217EcbA1998f62f948379FDe187D0A2#code).
+- **DAOMetra**: [0xBBcFf03a5dE9987dE141AAD29b8b9E89e2e1Cb28](https://sepolia.etherscan.io/address/0xBBcFf03a5dE9987dE141AAD29b8b9E89e2e1Cb28#code).
 
 ---
 
