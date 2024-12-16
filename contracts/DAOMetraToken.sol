@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// https://sepolia.etherscan.io/address/0x7bE6F4a5f8aEa8082Ad548c19E51d3F03834d0d1#code
+// 
 
 pragma solidity ^0.8.0;
 
@@ -62,6 +62,25 @@ contract DAOMetraToken is IERC20 {
         allowance[from][msg.sender] -= value;
         emit Transfer(from, to, value);
         return true;
+    }
+
+    function mint(address to, uint256 amount) external onlyAdmin {
+        require(to != address(0), "Cannot mint to zero address");
+        require(amount > 0, "Amount must be greater than 0");
+        
+        totalSupply += amount;
+        balanceOf[to] += amount;
+        emit Transfer(address(0), to, amount);
+    }
+
+    function burn(address from, uint256 amount) external onlyAdmin {
+        require(from != address(0), "Cannot burn from zero address");
+        require(amount > 0, "Amount must be greater than 0");
+        require(balanceOf[from] >= amount, "Burn amount exceeds balance");
+        
+        balanceOf[from] -= amount;
+        totalSupply -= amount;
+        emit Transfer(from, address(0), amount);
     }
 
     function setDAOAsAdmin(address daoAddress) external onlyAdmin {

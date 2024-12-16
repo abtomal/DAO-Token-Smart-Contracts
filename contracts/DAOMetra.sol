@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// https://sepolia.etherscan.io/address/0x9247C769a73BCe6878a529d92FCf847d5933a775#code
+// 
 
 pragma solidity ^0.8.0;
 
@@ -32,6 +32,11 @@ contract DAOMetra {
     Proposal[] public proposals;
     mapping(address => uint256) public shares;
     mapping(uint256 => mapping(address => bool)) public hasVoted;
+    
+    // mapping
+    mapping(uint256 => bool) public isProposalActive;
+    
+    uint256[] private activeProposalIds;
 
     event SharesPurchased(address indexed buyer, uint256 amount);
     event ProposalCreated(uint256 indexed proposalId, string title, uint256 endTime);
@@ -67,20 +72,21 @@ contract DAOMetra {
     }
 
     function purchaseShares(uint256 amount) external {
-    require(amount > 0, "Amount must be greater than 0");  // Aggiungiamo questo controllo
-    require(saleActive, "Token sale is not active");
-    uint256 cost = sharePrice * amount;
-    require(token.transferFrom(msg.sender, address(this), cost), "Transfer failed");
-    shares[msg.sender] += amount;
-    totalShares += amount;
-    emit SharesPurchased(msg.sender, amount);
-}
+        require(amount > 0, "Amount must be greater than 0");
+        require(saleActive, "Token sale is not active");
+        uint256 cost = sharePrice * amount;
+        require(token.transferFrom(msg.sender, address(this), cost), "Transfer failed");
+        shares[msg.sender] += amount;
+        totalShares += amount;
+        emit SharesPurchased(msg.sender, amount);
+    }
 
     function disableSale() external onlyAdmin {
         saleActive = false;
     }
 
     function createProposal(string memory title, string memory description, address payable recipient, uint256 tokenAmount) external onlyMember {
+        uint256 proposalId = proposals.length;
         proposals.push(Proposal({
             title: title,
             description: description,
@@ -95,7 +101,12 @@ contract DAOMetra {
             expired: false,
             queued: false
         }));
-        emit ProposalCreated(proposals.length - 1, title, block.timestamp + VOTING_PERIOD);
+        
+        
+        isProposalActive[proposalId] = true;
+        activeProposalIds.push(proposalId);
+        
+        emit ProposalCreated(proposalId, title, block.timestamp + VOTING_PERIOD);
     }
 
     function vote(uint256 proposalId, bool support, bool abstain) external onlyMember {
@@ -103,6 +114,8 @@ contract DAOMetra {
         require(!hasVoted[proposalId][msg.sender], "Already voted on this proposal");
         require(!proposal.executed && !proposal.expired, "Proposal cannot be voted on");
         require(block.timestamp <= proposal.createdAt + VOTING_PERIOD, "Voting period ended");
+        require(!(abstain && support), "Cannot both support and abstain");
+        require(abstain || !abstain, "Invalid voting parameters");
 
         hasVoted[proposalId][msg.sender] = true;
         uint256 weight = shares[msg.sender];
@@ -137,6 +150,12 @@ contract DAOMetra {
         require(block.timestamp >= proposal.executionTime, "Timelock period not ended");
 
         proposal.executed = true;
+        
+        
+        if (isProposalActive[proposalId]) {
+            isProposalActive[proposalId] = false;
+            removeFromActiveProposals(proposalId);
+        }
 
         if (proposal.recipient != address(0) && proposal.tokenAmount > 0) {
             require(token.transfer(proposal.recipient, proposal.tokenAmount), "Token transfer failed");
@@ -145,23 +164,18 @@ contract DAOMetra {
     }
 
     function getActiveProposals() external view returns (uint256[] memory) {
-        uint256 activeCount = 0;
-        for (uint256 i = 0; i < proposals.length; i++) {
-            if (!proposals[i].executed && !proposals[i].expired) {
-                activeCount++;
+        return activeProposalIds;
+    }
+
+    function removeFromActiveProposals(uint256 proposalId) internal {
+        for (uint256 i = 0; i < activeProposalIds.length; i++) {
+            if (activeProposalIds[i] == proposalId) {
+                // Sposta l'ultimo elemento nella posizione corrente e rimuovi l'ultimo elemento
+                activeProposalIds[i] = activeProposalIds[activeProposalIds.length - 1];
+                activeProposalIds.pop();
+                break;
             }
         }
-        
-        uint256[] memory activeProposals = new uint256[](activeCount);
-        uint256 currentIndex = 0;
-        
-        for (uint256 i = 0; i < proposals.length; i++) {
-            if (!proposals[i].executed && !proposals[i].expired) {
-                activeProposals[currentIndex] = i;
-                currentIndex++;
-            }
-        }
-        return activeProposals;
     }
 
     function getVotingPower(address member) external view returns (uint256) {
