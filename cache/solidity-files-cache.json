@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\aless\\html\\daometra\\contracts\\DAOMetra.sol": {
-      "lastModificationDate": 1732785847233,
-      "contentHash": "2b23e0b9c82af6bfd8cc275238486bcc",
+      "lastModificationDate": 1734348122430,
+      "contentHash": "992a989b46961d7ead63063cade2c337",
       "sourceName": "contracts/DAOMetra.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -40,8 +40,8 @@
       ]
     },
     "C:\\Users\\aless\\html\\daometra\\contracts\\DAOMetraToken.sol": {
-      "lastModificationDate": 1732704697858,
-      "contentHash": "5557c720da2db0201621cd9e1f36a7a1",
+      "lastModificationDate": 1734348161886,
+      "contentHash": "e715cb755764bfac5cb4a510fbc48ce8",
       "sourceName": "contracts/DAOMetraToken.sol",
       "solcConfig": {
         "version": "0.8.20",

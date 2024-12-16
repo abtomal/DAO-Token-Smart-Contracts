@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// 
+// https://sepolia.etherscan.io/address/0xBBcFf03a5dE9987dE141AAD29b8b9E89e2e1Cb28#code
 
 pragma solidity ^0.8.0;
 
@@ -33,9 +33,9 @@ contract DAOMetra {
     mapping(address => uint256) public shares;
     mapping(uint256 => mapping(address => bool)) public hasVoted;
     
-    // mapping
+    // Nuovo mapping per tracciare le proposte attive
     mapping(uint256 => bool) public isProposalActive;
-    
+    // Array per mantenere l'elenco degli ID delle proposte attive
     uint256[] private activeProposalIds;
 
     event SharesPurchased(address indexed buyer, uint256 amount);
@@ -102,7 +102,7 @@ contract DAOMetra {
             queued: false
         }));
         
-        
+        // Aggiungi la proposta all'elenco delle proposte attive
         isProposalActive[proposalId] = true;
         activeProposalIds.push(proposalId);
         
@@ -151,7 +151,7 @@ contract DAOMetra {
 
         proposal.executed = true;
         
-        
+        // Rimuovi la proposta dall'elenco delle proposte attive
         if (isProposalActive[proposalId]) {
             isProposalActive[proposalId] = false;
             removeFromActiveProposals(proposalId);
