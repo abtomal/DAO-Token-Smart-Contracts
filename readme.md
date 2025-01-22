@@ -1,80 +1,80 @@
 # DAOMetra Project
 
-## Progetto Smart Contract con Solidity Advanced di Alessandro Ponton
+## Advanced Solidity Smart Contract Project by Alessandro Ponton
 
-**DAOMetra** è un'implementazione di una DAO (Decentralized Autonomous Organization) sulla blockchain Ethereum.
+**DAOMetra** is an implementation of a DAO (Decentralized Autonomous Organization) on the Ethereum blockchain.
 
-Il progetto consiste in due smart contract principali:
+The project consists of two main smart contracts:
 
-1. **DAOMetraToken.sol**: Un token ERC20 che rappresenta i token della DAO.
-2. **DAOMetra.sol**: Il contratto principale della DAO che gestisce la governance.
+1. **DAOMetraToken.sol**: An ERC20 token representing the DAO's tokens.
+2. **DAOMetra.sol**: The main DAO contract managing governance.
 
 ---
 
-## Caratteristiche Tecniche
+## Technical Features
 
 ### DAOMetraToken
 
-- Implementa lo standard ERC20 per la massima compatibilità.
-- **Nome Token**: "Demtoken".
-- **Simbolo**: "DMTK".
-- **Decimali**: 18 (standard ERC20).
-- Sistema di amministrazione con controllo della DAO.
-- Protezioni contro indirizzi zero e overflow/underflow.
-- Eventi per tracciare trasferimenti e cambi di amministrazione.
+- Implements the ERC20 standard for maximum compatibility.
+- **Token Name**: "Demtoken".
+- **Symbol**: "DMTK".
+- **Decimals**: 18 (ERC20 standard).
+- Administration system controlled by the DAO.
+- Protections against zero addresses and overflow/underflow.
+- Events to track transfers and administrative changes.
 
 ### DAOMetra
 
-- Sistema di shares per il voto.
-- Prezzo fisso di 110 token per share.
-- Periodo di votazione di 1 settimana.
-- Sistema di timelock di 24 ore per l'esecuzione delle proposte.
-- Quorum del 51% per l'approvazione delle proposte.
-- Supporto per il voto, l'astensione e il voto contrario.
+- Share-based voting system.
+- Fixed price of 110 tokens per share.
+- Voting period of 1 week.
+- 24-hour timelock for proposal execution.
+- 51% quorum for proposal approval.
+- Supports voting, abstaining, and voting against proposals.
 
 ---
 
-## Funzionalità Principali
+## Key Features
 
-### Gestione Token
+### Token Management
 
-- Acquisto shares in cambio di token.
-- Trasferimenti sicuri con controlli di saldo.
-- Sistema di approvazioni per spese delegate.
+- Purchase shares in exchange for tokens.
+- Secure transfers with balance checks.
+- Approval system for delegated spending.
 
-### Sistema di Governance
+### Governance System
 
-- Creazione di proposte da parte dei membri.
-- Votazione pesata in base alle shares possedute.
-- Timelock per sicurezza aggiuntiva.
-- Sistema di quorum per decisioni significative.
+- Proposal creation by members.
+- Weighted voting based on shares held.
+- Timelock for added security.
+- Quorum system for significant decisions.
 
-### Sicurezza e Controlli Implementati
+### Security and Implemented Controls
 
-- Verifiche dei saldi prima dei trasferimenti.
-- Controlli sugli indirizzi zero.
-- Timelock per prevenire attacchi flash loan.
-- Sistema di permessi basato su ruoli.
+- Balance checks before transfers.
+- Zero address checks.
+- Timelock to prevent flash loan attacks.
+- Role-based permission system.
 
-### Diritti di Amministrazione
+### Administrative Rights
 
-- Amministrazione iniziale al deployer.
-- Trasferimento dell'amministrazione alla DAO.
-- Controlli di accesso per funzioni critiche.
+- Initial administration assigned to the deployer.
+- Administration transferred to the DAO.
+- Access controls for critical functions.
 
 ---
 
-## Versioni e Compatibilità
+## Versions and Compatibility
 
 - **Solidity**: v0.8.20.
 - **EVM Version**: Paris.
-- **Ottimizzazione**: Abilitata (200 runs).
+- **Optimization**: Enabled (200 runs).
 
 ---
 
 ## Deployment
 
-I contratti sono stati deployati sulla testnet Sepolia:
+The contracts have been deployed on the Sepolia testnet:
 
 - **DAOMetraToken**: [0x8017b00a1217EcbA1998f62f948379FDe187D0A2](https://sepolia.etherscan.io/address/0x8017b00a1217EcbA1998f62f948379FDe187D0A2#code).
 - **DAOMetra**: [0xBBcFf03a5dE9987dE141AAD29b8b9E89e2e1Cb28](https://sepolia.etherscan.io/address/0xBBcFf03a5dE9987dE141AAD29b8b9E89e2e1Cb28#code).
@@ -83,37 +83,36 @@ I contratti sono stati deployati sulla testnet Sepolia:
 
 ## Testing
 
-Il progetto include una suite completa di test che copre:
+The project includes a comprehensive test suite covering:
 
-- Inizializzazione dei contratti.
-- Acquisto di shares.
-- Creazione e gestione delle proposte.
-- Sistema di voto.
-- Funzionalità di timelock.
+- Contract initialization.
+- Share purchase.
+- Proposal creation and management.
+- Voting system.
+- Timelock functionality.
 
 ---
 
-## Sistema di Shares
+## Share System
 
-- Le shares rappresentano il potere di voto nella DAO.
-- Prezzo fisso per garantire equità nell'acquisto.
-- Non trasferibili per mantenere stabilità nella governance.
+- Shares represent voting power in the DAO.
+- Fixed price ensures fairness in purchases.
+- Non-transferable to maintain governance stability.
 
 ---
 
 ## Timelock
 
-L'implementazione del timelock di 24 ore:
+The 24-hour timelock implementation:
 
-- Protegge da attacchi veloci.
-- Permette ai membri di reagire a proposte sospette.
-- Aggiunge un livello di sicurezza alla governance.
+- Protects against rapid attacks.
+- Allows members to react to suspicious proposals.
+- Adds a layer of security to governance.
 
 ---
 
-## Note sulla Sicurezza
+## Security Notes
 
-- Sono stati implementati eventi per tracciare tutte le azioni importanti.
-- Il sistema di voting è protetto da manipolazioni.
-- Il timelock protegge da attacchi flash loan.
-
+- Events implemented to track all critical actions.
+- Voting system protected against manipulation.
+- Timelock safeguards against flash loan attacks.
